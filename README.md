@@ -1,6 +1,6 @@
-# Explorador Interactivo del Framework TOGAF
+# TOGAF explorer
 
-![Banner del Explorador TOGAF](https://placehold.co/1200x400/0A4D68/ffffff?text=Explorador+Interactivo+de+TOGAF)
+![Banner del Explorador TOGAF](https://placehold.co/1200x400/0A4D68/ffffff?text=TOGAF+explorer)
 
 ## 📖 Descripción del Proyecto
 
