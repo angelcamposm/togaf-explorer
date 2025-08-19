@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador Interactivo del Framework TOGAF</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Corporate -->
+    <!-- Application Structure Plan: The application is structured as a thematic, single-page journey. It begins with a high-level introduction to Enterprise Architecture and TOGAF's value. The centerpiece is an interactive explorer for the Architecture Development Method (ADM), allowing users to click through each phase to understand the core process without being overwhelmed. Subsequent sections are dedicated to key concepts like the Content Framework, Capability Framework, and a comparative analysis with other frameworks. This structure was chosen to transform the dense, linear report into a guided, non-linear exploration, prioritizing user understanding and engagement over strict adherence to the report's layout. -->
+    <!-- Visualization & Content Choices: 
+        - ADM Cycle: Goal: Organize/Explore -> Method: Interactive Diagram (HTML/CSS) + Dynamic Text Panel -> Interaction: Click on a phase to update the panel with its objectives and outcomes -> Justification: Makes the most complex part of TOGAF digestible and interactive.
+        - Enterprise Continuum: Goal: Organize -> Method: Flow Diagram (HTML/CSS Flexbox) -> Interaction: Hover effects -> Justification: Visually simplifies the concept of asset reuse from generic to specific.
+        - Framework Comparison: Goal: Compare -> Method: Radar Chart (Chart.js) + Comparison Table -> Interaction: Tooltips on chart -> Justification: Provides both a quick visual comparison and detailed textual analysis of TOGAF vs. Zachman and DoDAF.
+        - TOGAF 10th Edition Modularity: Goal: Inform -> Method: Diagram (HTML/CSS Grid) -> Interaction: None -> Justification: Clearly illustrates the key structural change to the framework.
+        - Library/Method: Chart.js for the radar chart on Canvas. All diagrams use structured HTML/CSS with Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Warm Neutral Background */
+            color: #4A4A4A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 450px;
+        }
+        .adm-phase {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .adm-phase:hover, .adm-phase.active {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #3B82F6; /* Subtle Accent */
+        }
+        .accent-bg { background-color: #0A4D68; } /* Complimentary Color */
+        .accent-text { color: #0A4D68; }
+        .subtle-accent-bg { background-color: #E0F2FE; }
+        .subtle-accent-text { color: #0C5473; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold accent-text">TOGAF Explorer</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#introduction" class="text-gray-600 hover:accent-text">Introducción</a>
+                <a href="#structure-10" class="text-gray-600 hover:accent-text">TOGAF 10</a>
+                <a href="#adm-explorer" class="text-gray-600 hover:accent-text">El ADM</a>
+                <a href="#content-framework" class="text-gray-600 hover:accent-text">Contenido</a>
+                <a href="#capability" class="text-gray-600 hover:accent-text">Capacidad</a>
+                <a href="#comparison" class="text-gray-600 hover:accent-text">Comparativa</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="introduction" class="text-center py-16">
+            <h1 class="text-4xl md:text-6xl font-black accent-text leading-tight">Navegando la Complejidad Empresarial</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Una guía interactiva del estándar TOGAF, el marco líder mundial para la Arquitectura Empresarial.</p>
+            <p class="mt-6 text-base text-gray-500 max-w-3xl mx-auto">TOGAF proporciona una metodología y un lenguaje común para alinear la estrategia de TI con los objetivos de negocio. Su valor no reside solo en los artefactos que produce, sino en la calidad de las conversaciones estratégicas que facilita entre los líderes de negocio y de TI, permitiendo a las organizaciones gestionar la complejidad, impulsar la transformación digital y obtener un mayor retorno de la inversión en tecnología.</p>
+        </section>
+
+        <hr class="my-16 border-gray-200">
+
+        <section id="structure-10" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold accent-text">La Evolución: El Estándar TOGAF 10ª Edición</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">La 10ª Edición representa un cambio de paradigma, abandonando el enfoque monolítico por una estructura modular más flexible y adaptable, diseñada para las empresas ágiles y la transformación digital.</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-xl border border-gray-200">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-shrink-0 p-8 bg-blue-100 rounded-lg">
+                        <div class="w-48 h-48 accent-bg text-white rounded-lg flex flex-col items-center justify-center text-center p-4 shadow-lg">
+                            <h3 class="font-bold text-lg">Contenido Fundamental de TOGAF</h3>
+                            <p class="text-sm mt-2">El andamiaje esencial y los conceptos universales del marco.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold accent-text mb-4">Guías de la Serie TOGAF</h3>
+                        <p class="text-gray-600 mb-6">Una biblioteca de guías en expansión que ofrecen orientación detallada para adaptar el marco a contextos específicos. Esto permite a las organizaciones construir su propia práctica de AE a medida.</p>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Agilidad</div>
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Seguridad</div>
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Datos</div>
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Transformación Digital</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-16 border-gray-200">
+
+        <section id="adm-explorer" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold accent-text">El Corazón de TOGAF: El Método ADM</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">El Método de Desarrollo de la Arquitectura (ADM) es el motor central de TOGAF. Es un proceso iterativo y por fases para desarrollar una arquitectura empresarial. Haz clic en cada fase para explorar sus objetivos y resultados clave.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <div class="lg:col-span-2">
+                    <div class="relative w-full aspect-square max-w-2xl mx-auto">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-full h-full rounded-full border-8 border-gray-200"></div>
+                            <div class="absolute w-2/3 h-2/3 rounded-full border-8 border-dashed border-gray-300"></div>
+                            <div id="req-mgmt" class="absolute w-1/3 h-1/3 accent-bg text-white rounded-full flex items-center justify-center text-center p-4 shadow-lg">
+                                <span class="font-bold">Gestión de Requisitos</span>
+                            </div>
+                        </div>
+                        <div id="adm-cycle-container" class="relative w-full h-full">
+                           <!-- JS will populate phases here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="sticky top-24">
+                    <div id="adm-details" class="bg-white p-6 rounded-lg shadow-xl border border-gray-200 min-h-[400px]">
+                        <h3 id="adm-phase-title" class="text-2xl font-bold accent-text mb-2"></h3>
+                        <p id="adm-phase-objective" class="text-gray-700 font-semibold mb-4"></p>
+                        <div id="adm-phase-outcomes" class="text-gray-600 text-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="my-16 border-gray-200">
+
+        <section id="content-framework" class="py-16">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold accent-text">Estructurando el Conocimiento Arquitectónico</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">TOGAF proporciona un sistema robusto para organizar los activos de arquitectura, fomentando la coherencia y la reutilización a través del Marco de Contenido y el Enterprise Continuum.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl p-8 space-y-12">
+                <div>
+                    <h3 class="text-2xl font-bold accent-text mb-6">El Marco de Contenido: Un Metamodelo para los Productos de Trabajo</h3>
+                    <p class="text-gray-600 mb-6">Este marco ofrece un modelo detallado de los productos de trabajo, asegurando la coherencia en los resultados creados al seguir el ADM. Define tres categorías clave:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="subtle-accent-bg p-6 rounded-lg">
+                            <h4 class="font-bold subtle-accent-text">Entregables</h4>
+                            <p class="text-sm mt-2">Productos de trabajo formales y contractuales, como un documento de Visión de la Arquitectura.</p>
+                        </div>
+                         <div class="subtle-accent-bg p-6 rounded-lg">
+                            <h4 class="font-bold subtle-accent-text">Artefactos</h4>
+                            <p class="text-sm mt-2">Describen un aspecto de la arquitectura (catálogos, matrices, diagramas).</p>
+                        </div>
+                         <div class="subtle-accent-bg p-6 rounded-lg">
+                            <h4 class="font-bold subtle-accent-text">Bloques de Construcción</h4>
+                            <p class="text-sm mt-2">Componentes reutilizables de capacidades (de Arquitectura) o implementaciones (de Solución).</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                     <h3 class="text-2xl font-bold accent-text mb-6">El Enterprise Continuum: De lo Genérico a lo Específico</h3>
+                     <div class="flex flex-col md:flex-row justify-between items-center text-center text-sm font-semibold text-gray-700">
+                        <div class="p-4">Fundación<br>(Genérico)</div>
+                        <div class="text-2xl text-blue-400 font-light mx-2">&rarr;</div>
+                        <div class="p-4">Sistemas Comunes</div>
+                        <div class="text-2xl text-blue-400 font-light mx-2">&rarr;</div>
+                        <div class="p-4">Industria</div>
+                         <div class="text-2xl text-blue-400 font-light mx-2">&rarr;</div>
+                        <div class="p-4">Específico de la Org.<br>(Personalizado)</div>
+                     </div>
+                     <p class="mt-4 text-center text-gray-600">Este continuo clasifica los activos (tanto arquitecturas como soluciones) desde marcos genéricos hasta implementaciones altamente personalizadas, promoviendo la reutilización y acelerando el desarrollo.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-16 border-gray-200">
+
+        <section id="capability" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold accent-text">Estableciendo la Práctica de Arquitectura</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">El éxito de la Arquitectura Empresarial depende de las personas, los procesos y la gobernanza. El Marco de Capacidad de Arquitectura de TOGAF define cómo establecer y operar una práctica de AE eficaz.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-4xl mb-4">🏛️</div>
+                    <h3 class="font-bold text-lg accent-text">Consejo de Arquitectura</h3>
+                    <p class="text-sm mt-2">Órgano de gobierno que supervisa la estrategia y toma de decisiones de arquitectura, asegurando la alineación con el negocio.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-4xl mb-4">⚖️</div>
+                    <h3 class="font-bold text-lg accent-text">Gobernanza</h3>
+                    <p class="text-sm mt-2">Procesos para asegurar el cumplimiento y la alineación de los proyectos con la arquitectura definida, a través de revisiones y contratos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                     <div class="text-4xl mb-4">📈</div>
+                    <h3 class="font-bold text-lg accent-text">Modelos de Madurez</h3>
+                    <p class="text-sm mt-2">Herramientas para evaluar y mejorar la capacidad de la práctica de AE de la organización, estableciendo objetivos de mejora realistas.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                     <div class="text-4xl mb-4">👥</div>
+                    <h3 class="font-bold text-lg accent-text">Marco de Habilidades</h3>
+                    <p class="text-sm mt-2">Define los roles, competencias y desarrollo profesional para el equipo de arquitectura, asegurando el talento necesario.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-16 border-gray-200">
+
+        <section id="comparison" class="py-16">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold accent-text">TOGAF en el Ecosistema de la AE</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">TOGAF no existe en el vacío. Comprender cómo se compara y complementa con otros marcos como Zachman y DoDAF es clave para una práctica de AE madura.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl p-8 space-y-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                         <h3 class="text-2xl font-bold accent-text mb-4">Comparativa de Enfoques</h3>
+                         <p class="text-gray-600 mb-6">Mientras que TOGAF es un marco **impulsado por procesos** que te guía en la creación de una arquitectura, otros marcos tienen propósitos diferentes. El gráfico de radar visualiza las fortalezas relativas de cada uno.</p>
+                         <ul class="text-sm space-y-2">
+                             <li><strong class="accent-text">TOGAF:</strong> Fuerte en el proceso de transformación y la gobernanza.</li>
+                             <li><strong class="text-green-600">Zachman:</strong> Fuerte en la clasificación exhaustiva de artefactos (taxonomía).</li>
+                             <li><strong class="text-purple-600">DoDAF:</strong> Fuerte en la interoperabilidad para sistemas complejos.</li>
+                         </ul>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="frameworksRadarChart"></canvas>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Característica</th>
+                                <th scope="col" class="px-6 py-3">TOGAF</th>
+                                <th scope="col" class="px-6 py-3">Zachman</th>
+                                <th scope="col" class="px-6 py-3">DoDAF</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900">Enfoque</th>
+                                <td class="px-6 py-4">Impulsado por Procesos</td>
+                                <td class="px-6 py-4">Taxonomía / Ontología</td>
+                                <td class="px-6 py-4">Impulsado por Vistas de Datos</td>
+                            </tr>
+                            <tr class="bg-gray-50 border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900">Resultado</th>
+                                <td class="px-6 py-4">Hoja de Ruta Accionable</td>
+                                <td class="px-6 py-4">Artefactos Clasificados</td>
+                                <td class="px-6 py-4">Especificaciones de Interoperabilidad</td>
+                            </tr>
+                             <tr class="bg-white">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900">Uso Ideal</th>
+                                <td class="px-6 py-4">Guiar la transformación empresarial</td>
+                                <td class="px-6 py-4">Documentar sistemas complejos</td>
+                                <td class="px-6 py-4">Integración de sistemas de defensa</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="accent-bg text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>Aplicación interactiva basada en el "Informe Detallado del Framework TOGAF".</p>
+            <p class="text-sm opacity-75 mt-2">TOGAF® es una marca registrada de The Open Group.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const admData = {
+            prelim: {
+                title: "Fase Preliminar",
+                objective: "Establecer la capacidad de arquitectura, adaptar el marco y definir los principios.",
+                outcomes: "<li>Marco de Arquitectura adaptado</li><li>Principios de Arquitectura definidos</li><li>Modelo Organizacional para la AE</li>"
+            },
+            a: {
+                title: "Fase A: Visión de la Arquitectura",
+                objective: "Definir el alcance, las restricciones y las expectativas para un ciclo de ADM.",
+                outcomes: "<li>Declaración de Trabajo de Arquitectura aprobada</li><li>Visión de la Arquitectura</li><li>Plan de Comunicaciones</li>"
+            },
+            b: {
+                title: "Fase B: Arquitectura de Negocio",
+                objective: "Desarrollar la arquitectura de negocio objetivo, describiendo cómo la empresa cumplirá sus objetivos.",
+                outcomes: "<li>Arquitectura de Negocio (Línea Base y Objetivo)</li><li>Análisis de brechas de negocio</li>"
+            },
+            c: {
+                title: "Fase C: Sistemas de Información",
+                objective: "Desarrollar las arquitecturas de Datos y Aplicaciones para soportar la arquitectura de negocio.",
+                outcomes: "<li>Arquitecturas de Datos y Aplicaciones (Línea Base y Objetivo)</li><li>Análisis de brechas</li>"
+            },
+            d: {
+                title: "Fase D: Arquitectura Tecnológica",
+                objective: "Desarrollar la arquitectura tecnológica objetivo que formará la base de la implementación.",
+                outcomes: "<li>Arquitectura Tecnológica (Línea Base y Objetivo)</li><li>Análisis de brechas tecnológicas</li>"
+            },
+            e: {
+                title: "Fase E: Oportunidades y Soluciones",
+                objective: "Identificar paquetes de trabajo, consolidar brechas y crear la Hoja de Ruta de la Arquitectura.",
+                outcomes: "<li>Hoja de Ruta de la Arquitectura (versión inicial)</li><li>Evaluación de capacidades</li>"
+            },
+            f: {
+                title: "Fase F: Planificación de la Migración",
+                objective: "Finalizar la Hoja de Ruta y el Plan de Implementación y Migración detallado.",
+                outcomes: "<li>Plan de Implementación y Migración detallado</li><li>Hoja de Ruta de la Arquitectura finalizada</li>"
+            },
+            g: {
+                title: "Fase G: Gobernanza de la Implementación",
+                objective: "Proporcionar supervisión arquitectónica a los proyectos de implementación para asegurar el cumplimiento.",
+                outcomes: "<li>Contratos de Arquitectura</li><li>Revisiones de cumplimiento</li>"
+            },
+            h: {
+                title: "Fase H: Gestión de Cambios",
+                objective: "Gestionar los cambios en la arquitectura y determinar la necesidad de nuevos ciclos del ADM.",
+                outcomes: "<li>Solicitudes de cambio de arquitectura</li><li>Decisión de iniciar un nuevo ciclo del ADM</li>"
+            }
+        };
+
+        const admPhasesOrder = ['prelim', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+        const phaseNames = { prelim: 'Preliminar', a: 'A', b: 'B', c: 'C', d: 'D', e: 'E', f: 'F', g: 'G', h: 'H' };
+        const container = document.getElementById('adm-cycle-container');
+        
+        function drawAdmCycle() {
+            container.innerHTML = ''; // Clear previous elements on resize
+            const radius = container.offsetWidth / 2.5;
+            const centerX = container.offsetWidth / 2;
+            const centerY = container.offsetHeight / 2;
+
+            admPhasesOrder.forEach((phaseKey, index) => {
+                const angle = (index / admPhasesOrder.length) * 2 * Math.PI - (Math.PI / 2);
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                
+                const phaseEl = document.createElement('div');
+                phaseEl.id = `phase-${phaseKey}`;
+                phaseEl.dataset.phase = phaseKey;
+                phaseEl.className = 'adm-phase absolute w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center text-center p-2 shadow-md font-bold accent-text';
+                
+                const size = window.innerWidth < 768 ? 40 : 48;
+                phaseEl.style.left = `${x - size}px`;
+                phaseEl.style.top = `${y - size}px`;
+                phaseEl.innerHTML = `<span>Fase ${phaseNames[phaseKey]}</span>`;
+                container.appendChild(phaseEl);
+            });
+            // Re-apply active class
+            const activePhase = document.querySelector('.adm-phase.active');
+            if (activePhase) {
+                updateAdmDetails(activePhase.dataset.phase);
+            }
+        }
+
+
+        const titleEl = document.getElementById('adm-phase-title');
+        const objectiveEl = document.getElementById('adm-phase-objective');
+        const outcomesEl = document.getElementById('adm-phase-outcomes');
+
+        function updateAdmDetails(phaseKey) {
+            const data = admData[phaseKey];
+            titleEl.textContent = data.title;
+            objectiveEl.textContent = data.objective;
+            outcomesEl.innerHTML = `<p class="font-semibold mb-2">Resultados Clave:</p><ul class="list-disc list-inside space-y-1">${data.outcomes}</ul>`;
+
+            document.querySelectorAll('.adm-phase').forEach(el => el.classList.remove('active'));
+            const currentPhaseEl = document.getElementById(`phase-${phaseKey}`);
+            if(currentPhaseEl) {
+                currentPhaseEl.classList.add('active');
+            }
+        }
+
+        container.addEventListener('click', (e) => {
+            const phaseEl = e.target.closest('.adm-phase');
+            if (phaseEl) {
+                updateAdmDetails(phaseEl.dataset.phase);
+            }
+        });
+
+        drawAdmCycle();
+        updateAdmDetails('a');
+        window.addEventListener('resize', drawAdmCycle);
+
+        new Chart(document.getElementById('frameworksRadarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Impulsado por Procesos', 'Gobernanza', 'Taxonomía Exhaustiva', 'Interoperabilidad', 'Amplitud de Aplicación'],
+                datasets: [{
+                    label: 'TOGAF',
+                    data: [9, 8, 5, 7, 9],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2
+                }, {
+                    label: 'Zachman',
+                    data: [2, 3, 10, 4, 6],
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                    borderColor: 'rgba(16, 185, 129, 1)',
+                    borderWidth: 2
+                }, {
+                    label: 'DoDAF',
+                    data: [6, 7, 7, 10, 4],
+                    backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: 'rgba(139, 92, 246, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { display: true },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        pointLabels: { font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
