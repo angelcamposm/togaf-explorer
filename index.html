@@ -48,6 +48,13 @@
         .accent-text { color: #0A4D68; }
         .subtle-accent-bg { background-color: #E0F2FE; }
         .subtle-accent-text { color: #0C5473; }
+        .lang-btn {
+            transition: background-color 0.2s;
+        }
+        .lang-btn.active {
+            background-color: #0A4D68;
+            color: white;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -55,13 +62,17 @@
     <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold accent-text">TOGAF Explorer</div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#introduction" class="text-gray-600 hover:accent-text">Introducción</a>
-                <a href="#structure-10" class="text-gray-600 hover:accent-text">TOGAF 10</a>
-                <a href="#adm-explorer" class="text-gray-600 hover:accent-text">El ADM</a>
-                <a href="#content-framework" class="text-gray-600 hover:accent-text">Contenido</a>
-                <a href="#capability" class="text-gray-600 hover:accent-text">Capacidad</a>
-                <a href="#comparison" class="text-gray-600 hover:accent-text">Comparativa</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#introduction" class="text-gray-600 hover:accent-text" data-translate-key="nav_intro">Introducción</a>
+                <a href="#structure-10" class="text-gray-600 hover:accent-text" data-translate-key="nav_togaf10">TOGAF 10</a>
+                <a href="#adm-explorer" class="text-gray-600 hover:accent-text" data-translate-key="nav_adm">El ADM</a>
+                <a href="#content-framework" class="text-gray-600 hover:accent-text" data-translate-key="nav_content">Contenido</a>
+                <a href="#capability" class="text-gray-600 hover:accent-text" data-translate-key="nav_capability">Capacidad</a>
+                <a href="#comparison" class="text-gray-600 hover:accent-text" data-translate-key="nav_comparison">Comparativa</a>
+            </div>
+            <div class="flex items-center space-x-2 border border-gray-300 rounded-full p-1">
+                <button id="lang-es" class="lang-btn active text-sm font-semibold px-3 py-1 rounded-full" data-lang="es">ES</button>
+                <button id="lang-en" class="lang-btn text-sm font-semibold px-3 py-1 rounded-full" data-lang="en">EN</button>
             </div>
         </nav>
     </header>
@@ -69,34 +80,34 @@
     <main class="container mx-auto px-6 py-8">
 
         <section id="introduction" class="text-center py-16">
-            <h1 class="text-4xl md:text-6xl font-black accent-text leading-tight">Navegando la Complejidad Empresarial</h1>
-            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Una guía interactiva del estándar TOGAF, el marco líder mundial para la Arquitectura Empresarial.</p>
-            <p class="mt-6 text-base text-gray-500 max-w-3xl mx-auto">TOGAF proporciona una metodología y un lenguaje común para alinear la estrategia de TI con los objetivos de negocio. Su valor no reside solo en los artefactos que produce, sino en la calidad de las conversaciones estratégicas que facilita entre los líderes de negocio y de TI, permitiendo a las organizaciones gestionar la complejidad, impulsar la transformación digital y obtener un mayor retorno de la inversión en tecnología.</p>
+            <h1 class="text-4xl md:text-6xl font-black accent-text leading-tight" data-translate-key="intro_title">Navegando la Complejidad Empresarial</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto" data-translate-key="intro_subtitle">Una guía interactiva del estándar TOGAF, el marco líder mundial para la Arquitectura Empresarial.</p>
+            <p class="mt-6 text-base text-gray-500 max-w-3xl mx-auto" data-translate-key="intro_desc">TOGAF proporciona una metodología y un lenguaje común para alinear la estrategia de TI con los objetivos de negocio. Su valor no reside solo en los artefactos que produce, sino en la calidad de las conversaciones estratégicas que facilita entre los líderes de negocio y de TI, permitiendo a las organizaciones gestionar la complejidad, impulsar la transformación digital y obtener un mayor retorno de la inversión en tecnología.</p>
         </section>
 
         <hr class="my-16 border-gray-200">
 
         <section id="structure-10" class="py-16">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold accent-text">La Evolución: El Estándar TOGAF 10ª Edición</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">La 10ª Edición representa un cambio de paradigma, abandonando el enfoque monolítico por una estructura modular más flexible y adaptable, diseñada para las empresas ágiles y la transformación digital.</p>
+                <h2 class="text-3xl md:text-4xl font-bold accent-text" data-translate-key="s10_title">La Evolución: El Estándar TOGAF 10ª Edición</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" data-translate-key="s10_subtitle">La 10ª Edición representa un cambio de paradigma, abandonando el enfoque monolítico por una estructura modular más flexible y adaptable, diseñada para las empresas ágiles y la transformación digital.</p>
             </div>
             <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-xl border border-gray-200">
                 <div class="flex flex-col md:flex-row items-center gap-8">
                     <div class="flex-shrink-0 p-8 bg-blue-100 rounded-lg">
                         <div class="w-48 h-48 accent-bg text-white rounded-lg flex flex-col items-center justify-center text-center p-4 shadow-lg">
-                            <h3 class="font-bold text-lg">Contenido Fundamental de TOGAF</h3>
-                            <p class="text-sm mt-2">El andamiaje esencial y los conceptos universales del marco.</p>
+                            <h3 class="font-bold text-lg" data-translate-key="s10_fundamental_title">Contenido Fundamental de TOGAF</h3>
+                            <p class="text-sm mt-2" data-translate-key="s10_fundamental_desc">El andamiaje esencial y los conceptos universales del marco.</p>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold accent-text mb-4">Guías de la Serie TOGAF</h3>
-                        <p class="text-gray-600 mb-6">Una biblioteca de guías en expansión que ofrecen orientación detallada para adaptar el marco a contextos específicos. Esto permite a las organizaciones construir su propia práctica de AE a medida.</p>
+                        <h3 class="text-2xl font-bold accent-text mb-4" data-translate-key="s10_guides_title">Guías de la Serie TOGAF</h3>
+                        <p class="text-gray-600 mb-6" data-translate-key="s10_guides_desc">Una biblioteca de guías en expansión que ofrecen orientación detallada para adaptar el marco a contextos específicos. Esto permite a las organizaciones construir su propia práctica de AE a medida.</p>
                         <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Agilidad</div>
-                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Seguridad</div>
-                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Datos</div>
-                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold">🔹 Guía de Transformación Digital</div>
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold" data-translate-key="s10_guide_agile">🔹 Guía de Agilidad</div>
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold" data-translate-key="s10_guide_security">🔹 Guía de Seguridad</div>
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold" data-translate-key="s10_guide_data">🔹 Guía de Datos</div>
+                            <div class="subtle-accent-bg p-3 rounded-md subtle-accent-text font-semibold" data-translate-key="s10_guide_digital">🔹 Guía de Transformación Digital</div>
                         </div>
                     </div>
                 </div>
@@ -107,8 +118,8 @@
 
         <section id="adm-explorer" class="py-16">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold accent-text">El Corazón de TOGAF: El Método ADM</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">El Método de Desarrollo de la Arquitectura (ADM) es el motor central de TOGAF. Es un proceso iterativo y por fases para desarrollar una arquitectura empresarial. Haz clic en cada fase para explorar sus objetivos y resultados clave.</p>
+                <h2 class="text-3xl md:text-4xl font-bold accent-text" data-translate-key="adm_title">El Corazón de TOGAF: El Método ADM</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" data-translate-key="adm_subtitle">El Método de Desarrollo de la Arquitectura (ADM) es el motor central de TOGAF. Es un proceso iterativo y por fases para desarrollar una arquitectura empresarial. Haz clic en cada fase para explorar sus objetivos y resultados clave.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -118,7 +129,7 @@
                             <div class="w-full h-full rounded-full border-8 border-gray-200"></div>
                             <div class="absolute w-2/3 h-2/3 rounded-full border-8 border-dashed border-gray-300"></div>
                             <div id="req-mgmt" class="absolute w-1/3 h-1/3 accent-bg text-white rounded-full flex items-center justify-center text-center p-4 shadow-lg">
-                                <span class="font-bold">Gestión de Requisitos</span>
+                                <span class="font-bold" data-translate-key="adm_req_mgmt">Gestión de Requisitos</span>
                             </div>
                         </div>
                         <div id="adm-cycle-container" class="relative w-full h-full">
@@ -140,40 +151,40 @@
 
         <section id="content-framework" class="py-16">
              <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold accent-text">Estructurando el Conocimiento Arquitectónico</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">TOGAF proporciona un sistema robusto para organizar los activos de arquitectura, fomentando la coherencia y la reutilización a través del Marco de Contenido y el Enterprise Continuum.</p>
+                <h2 class="text-3xl md:text-4xl font-bold accent-text" data-translate-key="content_title">Estructurando el Conocimiento Arquitectónico</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" data-translate-key="content_subtitle">TOGAF proporciona un sistema robusto para organizar los activos de arquitectura, fomentando la coherencia y la reutilización a través del Marco de Contenido y el Enterprise Continuum.</p>
             </div>
             <div class="bg-white rounded-lg shadow-xl p-8 space-y-12">
                 <div>
-                    <h3 class="text-2xl font-bold accent-text mb-6">El Marco de Contenido: Un Metamodelo para los Productos de Trabajo</h3>
-                    <p class="text-gray-600 mb-6">Este marco ofrece un modelo detallado de los productos de trabajo, asegurando la coherencia en los resultados creados al seguir el ADM. Define tres categorías clave:</p>
+                    <h3 class="text-2xl font-bold accent-text mb-6" data-translate-key="content_meta_title">El Marco de Contenido: Un Metamodelo para los Productos de Trabajo</h3>
+                    <p class="text-gray-600 mb-6" data-translate-key="content_meta_desc">Este marco ofrece un modelo detallado de los productos de trabajo, asegurando la coherencia en los resultados creados al seguir el ADM. Define tres categorías clave:</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                         <div class="subtle-accent-bg p-6 rounded-lg">
-                            <h4 class="font-bold subtle-accent-text">Entregables</h4>
-                            <p class="text-sm mt-2">Productos de trabajo formales y contractuales, como un documento de Visión de la Arquitectura.</p>
+                            <h4 class="font-bold subtle-accent-text" data-translate-key="content_deliverables_title">Entregables</h4>
+                            <p class="text-sm mt-2" data-translate-key="content_deliverables_desc">Productos de trabajo formales y contractuales, como un documento de Visión de la Arquitectura.</p>
                         </div>
                          <div class="subtle-accent-bg p-6 rounded-lg">
-                            <h4 class="font-bold subtle-accent-text">Artefactos</h4>
-                            <p class="text-sm mt-2">Describen un aspecto de la arquitectura (catálogos, matrices, diagramas).</p>
+                            <h4 class="font-bold subtle-accent-text" data-translate-key="content_artifacts_title">Artefactos</h4>
+                            <p class="text-sm mt-2" data-translate-key="content_artifacts_desc">Describen un aspecto de la arquitectura (catálogos, matrices, diagramas).</p>
                         </div>
                          <div class="subtle-accent-bg p-6 rounded-lg">
-                            <h4 class="font-bold subtle-accent-text">Bloques de Construcción</h4>
-                            <p class="text-sm mt-2">Componentes reutilizables de capacidades (de Arquitectura) o implementaciones (de Solución).</p>
+                            <h4 class="font-bold subtle-accent-text" data-translate-key="content_blocks_title">Bloques de Construcción</h4>
+                            <p class="text-sm mt-2" data-translate-key="content_blocks_desc">Componentes reutilizables de capacidades (de Arquitectura) o implementaciones (de Solución).</p>
                         </div>
                     </div>
                 </div>
                 <div>
-                     <h3 class="text-2xl font-bold accent-text mb-6">El Enterprise Continuum: De lo Genérico a lo Específico</h3>
+                     <h3 class="text-2xl font-bold accent-text mb-6" data-translate-key="content_continuum_title">El Enterprise Continuum: De lo Genérico a lo Específico</h3>
                      <div class="flex flex-col md:flex-row justify-between items-center text-center text-sm font-semibold text-gray-700">
-                        <div class="p-4">Fundación<br>(Genérico)</div>
+                        <div class="p-4" data-translate-key="content_continuum_foundation">Fundación<br>(Genérico)</div>
                         <div class="text-2xl text-blue-400 font-light mx-2">&rarr;</div>
-                        <div class="p-4">Sistemas Comunes</div>
+                        <div class="p-4" data-translate-key="content_continuum_common">Sistemas Comunes</div>
                         <div class="text-2xl text-blue-400 font-light mx-2">&rarr;</div>
-                        <div class="p-4">Industria</div>
+                        <div class="p-4" data-translate-key="content_continuum_industry">Industria</div>
                          <div class="text-2xl text-blue-400 font-light mx-2">&rarr;</div>
-                        <div class="p-4">Específico de la Org.<br>(Personalizado)</div>
+                        <div class="p-4" data-translate-key="content_continuum_org">Específico de la Org.<br>(Personalizado)</div>
                      </div>
-                     <p class="mt-4 text-center text-gray-600">Este continuo clasifica los activos (tanto arquitecturas como soluciones) desde marcos genéricos hasta implementaciones altamente personalizadas, promoviendo la reutilización y acelerando el desarrollo.</p>
+                     <p class="mt-4 text-center text-gray-600" data-translate-key="content_continuum_desc">Este continuo clasifica los activos (tanto arquitecturas como soluciones) desde marcos genéricos hasta implementaciones altamente personalizadas, promoviendo la reutilización y acelerando el desarrollo.</p>
                 </div>
             </div>
         </section>
@@ -182,29 +193,29 @@
 
         <section id="capability" class="py-16">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold accent-text">Estableciendo la Práctica de Arquitectura</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">El éxito de la Arquitectura Empresarial depende de las personas, los procesos y la gobernanza. El Marco de Capacidad de Arquitectura de TOGAF define cómo establecer y operar una práctica de AE eficaz.</p>
+                <h2 class="text-3xl md:text-4xl font-bold accent-text" data-translate-key="capability_title">Estableciendo la Práctica de Arquitectura</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" data-translate-key="capability_subtitle">El éxito de la Arquitectura Empresarial depende de las personas, los procesos y la gobernanza. El Marco de Capacidad de Arquitectura de TOGAF define cómo establecer y operar una práctica de AE eficaz.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
                     <div class="text-4xl mb-4">🏛️</div>
-                    <h3 class="font-bold text-lg accent-text">Consejo de Arquitectura</h3>
-                    <p class="text-sm mt-2">Órgano de gobierno que supervisa la estrategia y toma de decisiones de arquitectura, asegurando la alineación con el negocio.</p>
+                    <h3 class="font-bold text-lg accent-text" data-translate-key="capability_board_title">Consejo de Arquitectura</h3>
+                    <p class="text-sm mt-2" data-translate-key="capability_board_desc">Órgano de gobierno que supervisa la estrategia y toma de decisiones de arquitectura, asegurando la alineación con el negocio.</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
                     <div class="text-4xl mb-4">⚖️</div>
-                    <h3 class="font-bold text-lg accent-text">Gobernanza</h3>
-                    <p class="text-sm mt-2">Procesos para asegurar el cumplimiento y la alineación de los proyectos con la arquitectura definida, a través de revisiones y contratos.</p>
+                    <h3 class="font-bold text-lg accent-text" data-translate-key="capability_gov_title">Gobernanza</h3>
+                    <p class="text-sm mt-2" data-translate-key="capability_gov_desc">Procesos para asegurar el cumplimiento y la alineación de los proyectos con la arquitectura definida, a través de revisiones y contratos.</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
                      <div class="text-4xl mb-4">📈</div>
-                    <h3 class="font-bold text-lg accent-text">Modelos de Madurez</h3>
-                    <p class="text-sm mt-2">Herramientas para evaluar y mejorar la capacidad de la práctica de AE de la organización, estableciendo objetivos de mejora realistas.</p>
+                    <h3 class="font-bold text-lg accent-text" data-translate-key="capability_maturity_title">Modelos de Madurez</h3>
+                    <p class="text-sm mt-2" data-translate-key="capability_maturity_desc">Herramientas para evaluar y mejorar la capacidad de la práctica de AE de la organización, estableciendo objetivos de mejora realistas.</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
                      <div class="text-4xl mb-4">👥</div>
-                    <h3 class="font-bold text-lg accent-text">Marco de Habilidades</h3>
-                    <p class="text-sm mt-2">Define los roles, competencias y desarrollo profesional para el equipo de arquitectura, asegurando el talento necesario.</p>
+                    <h3 class="font-bold text-lg accent-text" data-translate-key="capability_skills_title">Marco de Habilidades</h3>
+                    <p class="text-sm mt-2" data-translate-key="capability_skills_desc">Define los roles, competencias y desarrollo profesional para el equipo de arquitectura, asegurando el talento necesario.</p>
                 </div>
             </div>
         </section>
@@ -213,18 +224,18 @@
 
         <section id="comparison" class="py-16">
              <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold accent-text">TOGAF en el Ecosistema de la AE</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">TOGAF no existe en el vacío. Comprender cómo se compara y complementa con otros marcos como Zachman y DoDAF es clave para una práctica de AE madura.</p>
+                <h2 class="text-3xl md:text-4xl font-bold accent-text" data-translate-key="comp_title">TOGAF en el Ecosistema de la AE</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" data-translate-key="comp_subtitle">TOGAF no existe en el vacío. Comprender cómo se compara y complementa con otros marcos como Zachman y DoDAF es clave para una práctica de AE madura.</p>
             </div>
             <div class="bg-white rounded-lg shadow-xl p-8 space-y-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div>
-                         <h3 class="text-2xl font-bold accent-text mb-4">Comparativa de Enfoques</h3>
-                         <p class="text-gray-600 mb-6">Mientras que TOGAF es un marco **impulsado por procesos** que te guía en la creación de una arquitectura, otros marcos tienen propósitos diferentes. El gráfico de radar visualiza las fortalezas relativas de cada uno.</p>
+                         <h3 class="text-2xl font-bold accent-text mb-4" data-translate-key="comp_approaches_title">Comparativa de Enfoques</h3>
+                         <p class="text-gray-600 mb-6" data-translate-key="comp_approaches_desc">Mientras que TOGAF es un marco **impulsado por procesos** que te guía en la creación de una arquitectura, otros marcos tienen propósitos diferentes. El gráfico de radar visualiza las fortalezas relativas de cada uno.</p>
                          <ul class="text-sm space-y-2">
-                             <li><strong class="accent-text">TOGAF:</strong> Fuerte en el proceso de transformación y la gobernanza.</li>
-                             <li><strong class="text-green-600">Zachman:</strong> Fuerte en la clasificación exhaustiva de artefactos (taxonomía).</li>
-                             <li><strong class="text-purple-600">DoDAF:</strong> Fuerte en la interoperabilidad para sistemas complejos.</li>
+                             <li data-translate-key="comp_approaches_togaf"></li>
+                             <li data-translate-key="comp_approaches_zachman"></li>
+                             <li data-translate-key="comp_approaches_dodaf"></li>
                          </ul>
                     </div>
                     <div class="chart-container">
@@ -235,7 +246,7 @@
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                             <tr>
-                                <th scope="col" class="px-6 py-3">Característica</th>
+                                <th scope="col" class="px-6 py-3" data-translate-key="comp_table_feature">Característica</th>
                                 <th scope="col" class="px-6 py-3">TOGAF</th>
                                 <th scope="col" class="px-6 py-3">Zachman</th>
                                 <th scope="col" class="px-6 py-3">DoDAF</th>
@@ -243,22 +254,22 @@
                         </thead>
                         <tbody>
                             <tr class="bg-white border-b">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900">Enfoque</th>
-                                <td class="px-6 py-4">Impulsado por Procesos</td>
-                                <td class="px-6 py-4">Taxonomía / Ontología</td>
-                                <td class="px-6 py-4">Impulsado por Vistas de Datos</td>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900" data-translate-key="comp_table_approach_label">Enfoque</th>
+                                <td class="px-6 py-4" data-translate-key="comp_table_approach_togaf">Impulsado por Procesos</td>
+                                <td class="px-6 py-4" data-translate-key="comp_table_approach_zachman">Taxonomía / Ontología</td>
+                                <td class="px-6 py-4" data-translate-key="comp_table_approach_dodaf">Impulsado por Vistas de Datos</td>
                             </tr>
                             <tr class="bg-gray-50 border-b">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900">Resultado</th>
-                                <td class="px-6 py-4">Hoja de Ruta Accionable</td>
-                                <td class="px-6 py-4">Artefactos Clasificados</td>
-                                <td class="px-6 py-4">Especificaciones de Interoperabilidad</td>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900" data-translate-key="comp_table_outcome_label">Resultado</th>
+                                <td class="px-6 py-4" data-translate-key="comp_table_outcome_togaf">Hoja de Ruta Accionable</td>
+                                <td class="px-6 py-4" data-translate-key="comp_table_outcome_zachman">Artefactos Clasificados</td>
+                                <td class="px-6 py-4" data-translate-key="comp_table_outcome_dodaf">Especificaciones de Interoperabilidad</td>
                             </tr>
                              <tr class="bg-white">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900">Uso Ideal</th>
-                                <td class="px-6 py-4">Guiar la transformación empresarial</td>
-                                <td class="px-6 py-4">Documentar sistemas complejos</td>
-                                <td class="px-6 py-4">Integración de sistemas de defensa</td>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900" data-translate-key="comp_table_usecase_label">Uso Ideal</th>
+                                <td class="px-6 py-4" data-translate-key="comp_table_usecase_togaf">Guiar la transformación empresarial</td>
+                                <td class="px-6 py-4" data-translate-key="comp_table_usecase_zachman">Documentar sistemas complejos</td>
+                                <td class="px-6 py-4" data-translate-key="comp_table_usecase_dodaf">Integración de sistemas de defensa</td>
                             </tr>
                         </tbody>
                     </table>
@@ -270,67 +281,223 @@
 
     <footer class="accent-bg text-white mt-16">
         <div class="container mx-auto px-6 py-8 text-center">
-            <p>Aplicación interactiva basada en el "Informe Detallado del Framework TOGAF".</p>
-            <p class="text-sm opacity-75 mt-2">TOGAF® es una marca registrada de The Open Group.</p>
+            <p data-translate-key="footer_desc">Aplicación interactiva basada en el "Informe Detallado del Framework TOGAF".</p>
+            <p class="text-sm opacity-75 mt-2" data-translate-key="footer_trademark">TOGAF® es una marca registrada de The Open Group.</p>
         </div>
     </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        
+        let currentLang = 'es';
+        let currentPhase = 'a';
+        let radarChart;
+
+        const translations = {
+            es: {
+                nav_intro: "Introducción",
+                nav_togaf10: "TOGAF 10",
+                nav_adm: "El ADM",
+                nav_content: "Contenido",
+                nav_capability: "Capacidad",
+                nav_comparison: "Comparativa",
+                intro_title: "Navegando la Complejidad Empresarial",
+                intro_subtitle: "Una guía interactiva del estándar TOGAF, el marco líder mundial para la Arquitectura Empresarial.",
+                intro_desc: "TOGAF proporciona una metodología y un lenguaje común para alinear la estrategia de TI con los objetivos de negocio. Su valor no reside solo en los artefactos que produce, sino en la calidad de las conversaciones estratégicas que facilita entre los líderes de negocio y de TI, permitiendo a las organizaciones gestionar la complejidad, impulsar la transformación digital y obtener un mayor retorno de la inversión en tecnología.",
+                s10_title: "La Evolución: El Estándar TOGAF 10ª Edición",
+                s10_subtitle: "La 10ª Edición representa un cambio de paradigma, abandonando el enfoque monolítico por una estructura modular más flexible y adaptable, diseñada para las empresas ágiles y la transformación digital.",
+                s10_fundamental_title: "Contenido Fundamental de TOGAF",
+                s10_fundamental_desc: "El andamiaje esencial y los conceptos universales del marco.",
+                s10_guides_title: "Guías de la Serie TOGAF",
+                s10_guides_desc: "Una biblioteca de guías en expansión que ofrecen orientación detallada para adaptar el marco a contextos específicos. Esto permite a las organizaciones construir su propia práctica de AE a medida.",
+                s10_guide_agile: "🔹 Guía de Agilidad",
+                s10_guide_security: "🔹 Guía de Seguridad",
+                s10_guide_data: "🔹 Guía de Datos",
+                s10_guide_digital: "🔹 Guía de Transformación Digital",
+                adm_title: "El Corazón de TOGAF: El Método ADM",
+                adm_subtitle: "El Método de Desarrollo de la Arquitectura (ADM) es el motor central de TOGAF. Es un proceso iterativo y por fases para desarrollar una arquitectura empresarial. Haz clic en cada fase para explorar sus objetivos y resultados clave.",
+                adm_req_mgmt: "Gestión de Requisitos",
+                content_title: "Estructurando el Conocimiento Arquitectónico",
+                content_subtitle: "TOGAF proporciona un sistema robusto para organizar los activos de arquitectura, fomentando la coherencia y la reutilización a través del Marco de Contenido y el Enterprise Continuum.",
+                content_meta_title: "El Marco de Contenido: Un Metamodelo para los Productos de Trabajo",
+                content_meta_desc: "Este marco ofrece un modelo detallado de los productos de trabajo, asegurando la coherencia en los resultados creados al seguir el ADM. Define tres categorías clave:",
+                content_deliverables_title: "Entregables",
+                content_deliverables_desc: "Productos de trabajo formales y contractuales, como un documento de Visión de la Arquitectura.",
+                content_artifacts_title: "Artefactos",
+                content_artifacts_desc: "Describen un aspecto de la arquitectura (catálogos, matrices, diagramas).",
+                content_blocks_title: "Bloques de Construcción",
+                content_blocks_desc: "Componentes reutilizables de capacidades (de Arquitectura) o implementaciones (de Solución).",
+                content_continuum_title: "El Enterprise Continuum: De lo Genérico a lo Específico",
+                content_continuum_foundation: "Fundación<br>(Genérico)",
+                content_continuum_common: "Sistemas Comunes",
+                content_continuum_industry: "Industria",
+                content_continuum_org: "Específico de la Org.<br>(Personalizado)",
+                content_continuum_desc: "Este continuo clasifica los activos (tanto arquitecturas como soluciones) desde marcos genéricos hasta implementaciones altamente personalizadas, promoviendo la reutilización y acelerando el desarrollo.",
+                capability_title: "Estableciendo la Práctica de Arquitectura",
+                capability_subtitle: "El éxito de la Arquitectura Empresarial depende de las personas, los procesos y la gobernanza. El Marco de Capacidad de Arquitectura de TOGAF define cómo establecer y operar una práctica de AE eficaz.",
+                capability_board_title: "Consejo de Arquitectura",
+                capability_board_desc: "Órgano de gobierno que supervisa la estrategia y toma de decisiones de arquitectura, asegurando la alineación con el negocio.",
+                capability_gov_title: "Gobernanza",
+                capability_gov_desc: "Procesos para asegurar el cumplimiento y la alineación de los proyectos con la arquitectura definida, a través de revisiones y contratos.",
+                capability_maturity_title: "Modelos de Madurez",
+                capability_maturity_desc: "Herramientas para evaluar y mejorar la capacidad de la práctica de AE de la organización, estableciendo objetivos de mejora realistas.",
+                capability_skills_title: "Marco de Habilidades",
+                capability_skills_desc: "Define los roles, competencias y desarrollo profesional para el equipo de arquitectura, asegurando el talento necesario.",
+                comp_title: "TOGAF en el Ecosistema de la AE",
+                comp_subtitle: "TOGAF no existe en el vacío. Comprender cómo se compara y complementa con otros marcos como Zachman y DoDAF es clave para una práctica de AE madura.",
+                comp_approaches_title: "Comparativa de Enfoques",
+                comp_approaches_desc: "Mientras que TOGAF es un marco **impulsado por procesos** que te guía en la creación de una arquitectura, otros marcos tienen propósitos diferentes. El gráfico de radar visualiza las fortalezas relativas de cada uno.",
+                comp_approaches_togaf: "<strong class='accent-text'>TOGAF:</strong> Fuerte en el proceso de transformación y la gobernanza.",
+                comp_approaches_zachman: "<strong class='text-green-600'>Zachman:</strong> Fuerte en la clasificación exhaustiva de artefactos (taxonomía).",
+                comp_approaches_dodaf: "<strong class='text-purple-600'>DoDAF:</strong> Fuerte en la interoperabilidad para sistemas complejos.",
+                comp_table_feature: "Característica",
+                comp_table_approach_label: "Enfoque",
+                comp_table_approach_togaf: "Impulsado por Procesos",
+                comp_table_approach_zachman: "Taxonomía / Ontología",
+                comp_table_approach_dodaf: "Impulsado por Vistas de Datos",
+                comp_table_outcome_label: "Resultado",
+                comp_table_outcome_togaf: "Hoja de Ruta Accionable",
+                comp_table_outcome_zachman: "Artefactos Clasificados",
+                comp_table_outcome_dodaf: "Especificaciones de Interoperabilidad",
+                comp_table_usecase_label: "Uso Ideal",
+                comp_table_usecase_togaf: "Guiar la transformación empresarial",
+                comp_table_usecase_zachman: "Documentar sistemas complejos",
+                comp_table_usecase_dodaf: "Integración de sistemas de defensa",
+                footer_desc: "Aplicación interactiva basada en el \"Informe Detallado del Framework TOGAF\".",
+                footer_trademark: "TOGAF® es una marca registrada de The Open Group."
+            },
+            en: {
+                nav_intro: "Introduction",
+                nav_togaf10: "TOGAF 10",
+                nav_adm: "The ADM",
+                nav_content: "Content",
+                nav_capability: "Capability",
+                nav_comparison: "Comparison",
+                intro_title: "Navigating Enterprise Complexity",
+                intro_subtitle: "An interactive guide to the TOGAF standard, the world's leading framework for Enterprise Architecture.",
+                intro_desc: "TOGAF provides a methodology and a common language to align IT strategy with business goals. Its value lies not just in the artifacts it produces, but in the quality of strategic conversations it facilitates between business and IT leaders, enabling organizations to manage complexity, drive digital transformation, and achieve a greater return on technology investment.",
+                s10_title: "The Evolution: The TOGAF Standard, 10th Edition",
+                s10_subtitle: "The 10th Edition represents a paradigm shift, moving from a monolithic approach to a more flexible and adaptable modular structure, designed for agile enterprises and digital transformation.",
+                s10_fundamental_title: "TOGAF Fundamental Content",
+                s10_fundamental_desc: "The essential scaffolding and universal concepts of the framework.",
+                s10_guides_title: "TOGAF Series Guides",
+                s10_guides_desc: "An expanding library of guides offering detailed advice on tailoring the framework for specific contexts. This allows organizations to build their own custom EA practice.",
+                s10_guide_agile: "🔹 Agile Guide",
+                s10_guide_security: "🔹 Security Guide",
+                s10_guide_data: "🔹 Data Guide",
+                s10_guide_digital: "🔹 Digital Transformation Guide",
+                adm_title: "The Heart of TOGAF: The ADM Method",
+                adm_subtitle: "The Architecture Development Method (ADM) is the central engine of TOGAF. It is an iterative, phased process for developing an enterprise architecture. Click on each phase to explore its objectives and key outcomes.",
+                adm_req_mgmt: "Requirements Management",
+                content_title: "Structuring Architectural Knowledge",
+                content_subtitle: "TOGAF provides a robust system for organizing architectural assets, fostering consistency and reuse through the Content Framework and the Enterprise Continuum.",
+                content_meta_title: "The Content Framework: A Metamodel for Work Products",
+                content_meta_desc: "This framework offers a detailed model of work products, ensuring consistency in the outputs created by following the ADM. It defines three key categories:",
+                content_deliverables_title: "Deliverables",
+                content_deliverables_desc: "Formal, contractual work products, such as an Architecture Vision document.",
+                content_artifacts_title: "Artifacts",
+                content_artifacts_desc: "Describe an aspect of the architecture (catalogs, matrices, diagrams).",
+                content_blocks_title: "Building Blocks",
+                content_blocks_desc: "Reusable components of capabilities (Architecture) or implementations (Solution).",
+                content_continuum_title: "The Enterprise Continuum: From Generic to Specific",
+                content_continuum_foundation: "Foundation<br>(Generic)",
+                content_continuum_common: "Common Systems",
+                content_continuum_industry: "Industry",
+                content_continuum_org: "Organization-Specific<br>(Custom)",
+                content_continuum_desc: "This continuum classifies assets (both architectures and solutions) from generic frameworks to highly customized implementations, promoting reuse and accelerating development.",
+                capability_title: "Establishing the Architecture Practice",
+                capability_subtitle: "The success of Enterprise Architecture depends on people, processes, and governance. The TOGAF Architecture Capability Framework defines how to establish and operate an effective EA practice.",
+                capability_board_title: "Architecture Board",
+                capability_board_desc: "A governing body that oversees the architecture strategy and decision-making, ensuring business alignment.",
+                capability_gov_title: "Governance",
+                capability_gov_desc: "Processes to ensure compliance and alignment of projects with the defined architecture, through reviews and contracts.",
+                capability_maturity_title: "Maturity Models",
+                capability_maturity_desc: "Tools to assess and improve the organization's EA practice capability, setting realistic improvement goals.",
+                capability_skills_title: "Skills Framework",
+                capability_skills_desc: "Defines the roles, competencies, and professional development for the architecture team, ensuring necessary talent.",
+                comp_title: "TOGAF in the EA Ecosystem",
+                comp_subtitle: "TOGAF does not exist in a vacuum. Understanding how it compares and complements other frameworks like Zachman and DoDAF is key to a mature EA practice.",
+                comp_approaches_title: "Comparison of Approaches",
+                comp_approaches_desc: "While TOGAF is a **process-driven** framework that guides you in creating an architecture, other frameworks serve different purposes. The radar chart visualizes the relative strengths of each.",
+                comp_approaches_togaf: "<strong class='accent-text'>TOGAF:</strong> Strong in transformation process and governance.",
+                comp_approaches_zachman: "<strong class='text-green-600'>Zachman:</strong> Strong in exhaustive artifact classification (taxonomy).",
+                comp_approaches_dodaf: "<strong class='text-purple-600'>DoDAF:</strong> Strong in interoperability for complex systems.",
+                comp_table_feature: "Feature",
+                comp_table_approach_label: "Approach",
+                comp_table_approach_togaf: "Process-Driven",
+                comp_table_approach_zachman: "Taxonomy / Ontology",
+                comp_table_approach_dodaf: "Data-View Driven",
+                comp_table_outcome_label: "Outcome",
+                comp_table_outcome_togaf: "Actionable Roadmap",
+                comp_table_outcome_zachman: "Classified Artifacts",
+                comp_table_outcome_dodaf: "Interoperability Specs",
+                comp_table_usecase_label: "Ideal Use",
+                comp_table_usecase_togaf: "Guiding enterprise transformation",
+                comp_table_usecase_zachman: "Documenting complex systems",
+                comp_table_usecase_dodaf: "Defense systems integration",
+                footer_desc: "Interactive application based on the \"Detailed Report on the TOGAF Framework\".",
+                footer_trademark: "TOGAF® is a registered trademark of The Open Group."
+            }
+        };
+
         const admData = {
-            prelim: {
-                title: "Fase Preliminar",
-                objective: "Establecer la capacidad de arquitectura, adaptar el marco y definir los principios.",
-                outcomes: "<li>Marco de Arquitectura adaptado</li><li>Principios de Arquitectura definidos</li><li>Modelo Organizacional para la AE</li>"
+            es: {
+                prelim: { title: "Fase Preliminar", objective: "Establecer la capacidad de arquitectura, adaptar el marco y definir los principios.", outcomes: "<li>Marco de Arquitectura adaptado</li><li>Principios de Arquitectura definidos</li><li>Modelo Organizacional para la AE</li>" },
+                a: { title: "Fase A: Visión de la Arquitectura", objective: "Definir el alcance, las restricciones y las expectativas para un ciclo de ADM.", outcomes: "<li>Declaración de Trabajo de Arquitectura aprobada</li><li>Visión de la Arquitectura</li><li>Plan de Comunicaciones</li>" },
+                b: { title: "Fase B: Arquitectura de Negocio", objective: "Desarrollar la arquitectura de negocio objetivo, describiendo cómo la empresa cumplirá sus objetivos.", outcomes: "<li>Arquitectura de Negocio (Línea Base y Objetivo)</li><li>Análisis de brechas de negocio</li>" },
+                c: { title: "Fase C: Sistemas de Información", objective: "Desarrollar las arquitecturas de Datos y Aplicaciones para soportar la arquitectura de negocio.", outcomes: "<li>Arquitecturas de Datos y Aplicaciones (Línea Base y Objetivo)</li><li>Análisis de brechas</li>" },
+                d: { title: "Fase D: Arquitectura Tecnológica", objective: "Desarrollar la arquitectura tecnológica objetivo que formará la base de la implementación.", outcomes: "<li>Arquitectura Tecnológica (Línea Base y Objetivo)</li><li>Análisis de brechas tecnológicas</li>" },
+                e: { title: "Fase E: Oportunidades y Soluciones", objective: "Identificar paquetes de trabajo, consolidar brechas y crear la Hoja de Ruta de la Arquitectura.", outcomes: "<li>Hoja de Ruta de la Arquitectura (versión inicial)</li><li>Evaluación de capacidades</li>" },
+                f: { title: "Fase F: Planificación de la Migración", objective: "Finalizar la Hoja de Ruta y el Plan de Implementación y Migración detallado.", outcomes: "<li>Plan de Implementación y Migración detallado</li><li>Hoja de Ruta de la Arquitectura finalizada</li>" },
+                g: { title: "Fase G: Gobernanza de la Implementación", objective: "Proporcionar supervisión arquitectónica a los proyectos de implementación para asegurar el cumplimiento.", outcomes: "<li>Contratos de Arquitectura</li><li>Revisiones de cumplimiento</li>" },
+                h: { title: "Fase H: Gestión de Cambios", objective: "Gestionar los cambios en la arquitectura y determinar la necesidad de nuevos ciclos del ADM.", outcomes: "<li>Solicitudes de cambio de arquitectura</li><li>Decisión de iniciar un nuevo ciclo del ADM</li>" }
             },
-            a: {
-                title: "Fase A: Visión de la Arquitectura",
-                objective: "Definir el alcance, las restricciones y las expectativas para un ciclo de ADM.",
-                outcomes: "<li>Declaración de Trabajo de Arquitectura aprobada</li><li>Visión de la Arquitectura</li><li>Plan de Comunicaciones</li>"
-            },
-            b: {
-                title: "Fase B: Arquitectura de Negocio",
-                objective: "Desarrollar la arquitectura de negocio objetivo, describiendo cómo la empresa cumplirá sus objetivos.",
-                outcomes: "<li>Arquitectura de Negocio (Línea Base y Objetivo)</li><li>Análisis de brechas de negocio</li>"
-            },
-            c: {
-                title: "Fase C: Sistemas de Información",
-                objective: "Desarrollar las arquitecturas de Datos y Aplicaciones para soportar la arquitectura de negocio.",
-                outcomes: "<li>Arquitecturas de Datos y Aplicaciones (Línea Base y Objetivo)</li><li>Análisis de brechas</li>"
-            },
-            d: {
-                title: "Fase D: Arquitectura Tecnológica",
-                objective: "Desarrollar la arquitectura tecnológica objetivo que formará la base de la implementación.",
-                outcomes: "<li>Arquitectura Tecnológica (Línea Base y Objetivo)</li><li>Análisis de brechas tecnológicas</li>"
-            },
-            e: {
-                title: "Fase E: Oportunidades y Soluciones",
-                objective: "Identificar paquetes de trabajo, consolidar brechas y crear la Hoja de Ruta de la Arquitectura.",
-                outcomes: "<li>Hoja de Ruta de la Arquitectura (versión inicial)</li><li>Evaluación de capacidades</li>"
-            },
-            f: {
-                title: "Fase F: Planificación de la Migración",
-                objective: "Finalizar la Hoja de Ruta y el Plan de Implementación y Migración detallado.",
-                outcomes: "<li>Plan de Implementación y Migración detallado</li><li>Hoja de Ruta de la Arquitectura finalizada</li>"
-            },
-            g: {
-                title: "Fase G: Gobernanza de la Implementación",
-                objective: "Proporcionar supervisión arquitectónica a los proyectos de implementación para asegurar el cumplimiento.",
-                outcomes: "<li>Contratos de Arquitectura</li><li>Revisiones de cumplimiento</li>"
-            },
-            h: {
-                title: "Fase H: Gestión de Cambios",
-                objective: "Gestionar los cambios en la arquitectura y determinar la necesidad de nuevos ciclos del ADM.",
-                outcomes: "<li>Solicitudes de cambio de arquitectura</li><li>Decisión de iniciar un nuevo ciclo del ADM</li>"
+            en: {
+                prelim: { title: "Preliminary Phase", objective: "Establish the architecture capability, tailor the framework, and define principles.", outcomes: "<li>Tailored Architecture Framework</li><li>Defined Architecture Principles</li><li>Organizational Model for EA</li>" },
+                a: { title: "Phase A: Architecture Vision", objective: "Define the scope, constraints, and expectations for an ADM cycle.", outcomes: "<li>Approved Statement of Architecture Work</li><li>Architecture Vision</li><li>Communications Plan</li>" },
+                b: { title: "Phase B: Business Architecture", objective: "Develop the target business architecture, describing how the enterprise will meet its objectives.", outcomes: "<li>Business Architecture (Baseline & Target)</li><li>Business Gap Analysis</li>" },
+                c: { title: "Phase C: Information Systems", objective: "Develop the Data and Application architectures to support the business architecture.", outcomes: "<li>Data & Application Architectures (Baseline & Target)</li><li>Gap Analysis</li>" },
+                d: { title: "Phase D: Technology Architecture", objective: "Develop the target technology architecture that will form the basis of implementation.", outcomes: "<li>Technology Architecture (Baseline & Target)</li><li>Technology Gap Analysis</li>" },
+                e: { title: "Phase E: Opportunities & Solutions", objective: "Identify work packages, consolidate gaps, and create the Architecture Roadmap.", outcomes: "<li>Initial Architecture Roadmap</li><li>Capability Assessment</li>" },
+                f: { title: "Phase F: Migration Planning", objective: "Finalize the detailed Implementation and Migration Plan and the Roadmap.", outcomes: "<li>Detailed Implementation and Migration Plan</li><li>Finalized Architecture Roadmap</li>" },
+                g: { title: "Phase G: Implementation Governance", objective: "Provide architectural oversight for implementation projects to ensure compliance.", outcomes: "<li>Architecture Contracts</li><li>Compliance Reviews</li>" },
+                h: { title: "Phase H: Change Management", objective: "Manage changes to the architecture and determine the need for new cycles.", outcomes: "<li>Architecture Change Requests</li><li>Decision to start a new ADM cycle</li>" }
             }
         };
 
         const admPhasesOrder = ['prelim', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-        const phaseNames = { prelim: 'Preliminar', a: 'A', b: 'B', c: 'C', d: 'D', e: 'E', f: 'F', g: 'G', h: 'H' };
+        const phaseNames = {
+            es: { prelim: 'Preliminar', a: 'A', b: 'B', c: 'C', d: 'D', e: 'E', f: 'F', g: 'G', h: 'H' },
+            en: { prelim: 'Preliminary', a: 'A', b: 'B', c: 'C', d: 'D', e: 'E', f: 'F', g: 'G', h: 'H' }
+        };
+
         const container = document.getElementById('adm-cycle-container');
-        
+        const titleEl = document.getElementById('adm-phase-title');
+        const objectiveEl = document.getElementById('adm-phase-objective');
+        const outcomesEl = document.getElementById('adm-phase-outcomes');
+
+        function updateLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-translate-key]').forEach(el => {
+                const key = el.dataset.translateKey;
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            drawAdmCycle();
+            updateAdmDetails(currentPhase);
+            updateRadarChartLabels();
+        }
+
         function drawAdmCycle() {
-            container.innerHTML = ''; // Clear previous elements on resize
+            container.innerHTML = '';
             const radius = container.offsetWidth / 2.5;
             const centerX = container.offsetWidth / 2;
             const centerY = container.offsetHeight / 2;
@@ -348,31 +515,35 @@
                 const size = window.innerWidth < 768 ? 40 : 48;
                 phaseEl.style.left = `${x - size}px`;
                 phaseEl.style.top = `${y - size}px`;
-                phaseEl.innerHTML = `<span>Fase ${phaseNames[phaseKey]}</span>`;
+                phaseEl.innerHTML = `<span data-translate-key="adm_phase_${phaseKey}">${currentLang === 'es' ? 'Fase' : 'Phase'} ${phaseNames[currentLang][phaseKey]}</span>`;
                 container.appendChild(phaseEl);
             });
-            // Re-apply active class
-            const activePhase = document.querySelector('.adm-phase.active');
-            if (activePhase) {
-                updateAdmDetails(activePhase.dataset.phase);
-            }
+            
+            const activePhaseEl = document.getElementById(`phase-${currentPhase}`);
+            if (activePhaseEl) activePhaseEl.classList.add('active');
         }
 
-
-        const titleEl = document.getElementById('adm-phase-title');
-        const objectiveEl = document.getElementById('adm-phase-objective');
-        const outcomesEl = document.getElementById('adm-phase-outcomes');
-
         function updateAdmDetails(phaseKey) {
-            const data = admData[phaseKey];
+            currentPhase = phaseKey;
+            const data = admData[currentLang][phaseKey];
             titleEl.textContent = data.title;
             objectiveEl.textContent = data.objective;
-            outcomesEl.innerHTML = `<p class="font-semibold mb-2">Resultados Clave:</p><ul class="list-disc list-inside space-y-1">${data.outcomes}</ul>`;
+            const outcomesTitle = currentLang === 'es' ? 'Resultados Clave:' : 'Key Outcomes:';
+            outcomesEl.innerHTML = `<p class="font-semibold mb-2">${outcomesTitle}</p><ul class="list-disc list-inside space-y-1">${data.outcomes}</ul>`;
 
             document.querySelectorAll('.adm-phase').forEach(el => el.classList.remove('active'));
             const currentPhaseEl = document.getElementById(`phase-${phaseKey}`);
-            if(currentPhaseEl) {
-                currentPhaseEl.classList.add('active');
+            if(currentPhaseEl) currentPhaseEl.classList.add('active');
+        }
+        
+        function updateRadarChartLabels() {
+            const labels = {
+                es: ['Impulsado por Procesos', 'Gobernanza', 'Taxonomía Exhaustiva', 'Interoperabilidad', 'Amplitud de Aplicación'],
+                en: ['Process-Driven', 'Governance', 'Exhaustive Taxonomy', 'Interoperability', 'Breadth of Application']
+            };
+            if (radarChart) {
+                radarChart.data.labels = labels[currentLang];
+                radarChart.update();
             }
         }
 
@@ -383,50 +554,34 @@
             }
         });
 
-        drawAdmCycle();
-        updateAdmDetails('a');
+        document.getElementById('lang-es').addEventListener('click', () => updateLanguage('es'));
+        document.getElementById('lang-en').addEventListener('click', () => updateLanguage('en'));
+        
         window.addEventListener('resize', drawAdmCycle);
 
-        new Chart(document.getElementById('frameworksRadarChart'), {
+        radarChart = new Chart(document.getElementById('frameworksRadarChart'), {
             type: 'radar',
             data: {
-                labels: ['Impulsado por Procesos', 'Gobernanza', 'Taxonomía Exhaustiva', 'Interoperabilidad', 'Amplitud de Aplicación'],
+                labels: [], // Will be populated by updateRadarChartLabels
                 datasets: [{
-                    label: 'TOGAF',
-                    data: [9, 8, 5, 7, 9],
-                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                    borderColor: 'rgba(59, 130, 246, 1)',
-                    borderWidth: 2
+                    label: 'TOGAF', data: [9, 8, 5, 7, 9], backgroundColor: 'rgba(59, 130, 246, 0.2)', borderColor: 'rgba(59, 130, 246, 1)', borderWidth: 2
                 }, {
-                    label: 'Zachman',
-                    data: [2, 3, 10, 4, 6],
-                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
-                    borderColor: 'rgba(16, 185, 129, 1)',
-                    borderWidth: 2
+                    label: 'Zachman', data: [2, 3, 10, 4, 6], backgroundColor: 'rgba(16, 185, 129, 0.2)', borderColor: 'rgba(16, 185, 129, 1)', borderWidth: 2
                 }, {
-                    label: 'DoDAF',
-                    data: [6, 7, 7, 10, 4],
-                    backgroundColor: 'rgba(139, 92, 246, 0.2)',
-                    borderColor: 'rgba(139, 92, 246, 1)',
-                    borderWidth: 2
+                    label: 'DoDAF', data: [6, 7, 7, 10, 4], backgroundColor: 'rgba(139, 92, 246, 0.2)', borderColor: 'rgba(139, 92, 246, 1)', borderWidth: 2
                 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    r: {
-                        angleLines: { display: true },
-                        suggestedMin: 0,
-                        suggestedMax: 10,
-                        pointLabels: { font: { size: 10 } }
-                    }
-                },
-                plugins: {
-                    legend: { position: 'top' }
-                }
+                responsive: true, maintainAspectRatio: false,
+                scales: { r: { angleLines: { display: true }, suggestedMin: 0, suggestedMax: 10, pointLabels: { font: { size: 10 } } } },
+                plugins: { legend: { position: 'top' } }
             }
         });
+
+        // Initial Load
+        updateLanguage(currentLang);
+        drawAdmCycle();
+        updateAdmDetails(currentPhase);
     });
     </script>
 </body>
